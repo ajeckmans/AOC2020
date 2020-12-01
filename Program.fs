@@ -16,12 +16,7 @@ let main argv =
 
     let puzzleInput = File.ReadAllLines filePath |> Array.toList |> List.map int
 
-    let answer =
-        puzzleInput
-        |> comb combinationCount
-        |> List.filter (fun l -> List.sum l = 2020)
-        |> List.head
-        |> List.fold (*) 1
+    let answer = puzzleInput |> comb combinationCount |> List.find (fun l -> List.sum l = 2020) |> List.fold (*) 1
 
     printfn "answer %A" answer
     0 // return an integer exit code
