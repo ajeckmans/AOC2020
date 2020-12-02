@@ -1,6 +1,10 @@
 ﻿module AOC2020.day2
 
 open System.IO
+open FSharp.Text.RegexProvider
+open FSharp.Text.RegexExtensions
+
+type LineRegex = Regex< @"(?<num1>\d+)-(?<num2>\d+) (?<char>.{1}): (?<password>.+)$" >
 
 type passwordRequirement = { num1: int; num2: int; char: char; password: string }
 
@@ -18,11 +22,11 @@ let part2 passwordRequirement =
 
 let solve filePath passwordValid =
     let parseLine (line: string) =
-        let components = line.Split(' ', '-')
+        let parsed = LineRegex().TypedMatch(line)
 
-        { num1 = components.[0] |> int
-          num2 = components.[1] |> int
-          char = components.[2].[0]
-          password = components.[3] }
+        { num1 = parsed.num1.AsInt
+          num2 = parsed.num2.AsInt
+          char = parsed.char.AsChar
+          password = parsed.password.Value }
 
     File.ReadAllLines filePath |> Array.map parseLine |> Array.filter passwordValid |> Array.length
