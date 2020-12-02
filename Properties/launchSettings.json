@@ -8,6 +8,10 @@
     "AOC2020 - 1 - 2": {
       "commandName": "Project",
       "commandLineArgs": "input1.txt 3"
+    },
+    "AOC2020 - 2 - 1": {
+      "commandName": "Project",
+      "commandLineArgs": "input2.txt"
     }
   }
 }

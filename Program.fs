@@ -2,21 +2,16 @@
 
 open System
 open System.IO
+open AOC2020
 
-let rec comb n l =
-    match n, l with
-    | 0, _ -> [ [] ]
-    | _, [] -> []
-    | k, (x :: xs) -> List.map ((@) [ x ]) (comb (k - 1) xs) @ comb k xs
 
 [<EntryPoint>]
 let main argv =
     let filePath = Path.Combine(Directory.GetCurrentDirectory(), argv.[0])
-    let combinationCount = argv.[1] |> int
 
-    let puzzleInput = File.ReadAllLines filePath |> Array.toList |> List.map int
-
-    let answer = puzzleInput |> comb combinationCount |> List.find (fun l -> List.sum l = 2020) |> List.fold (*) 1
+    // let answer = day1.solve filePath (argv.[1] |> int)
+    // let answer = day2.solve filePath day2.part1
+    let answer = day2.solve filePath day2.part2
 
     printfn "answer %A" answer
     0 // return an integer exit code
