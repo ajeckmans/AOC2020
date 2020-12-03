@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Include="List.fs" />
+    <Compile Include="Array2D.fs" />
     <Content Include="input1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -16,6 +17,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="day2.fs" />
+    <Content Include="input3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="day3.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
