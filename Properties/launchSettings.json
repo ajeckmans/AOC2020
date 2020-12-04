@@ -13,9 +13,13 @@
       "commandName": "Project",
       "commandLineArgs": "input2.txt"
     },
-    "AOC2020 - 3 - 1": {
+    "AOC2020 - 3": {
       "commandName": "Project",
       "commandLineArgs": "input3.txt"
+    },
+    "AOC2020 - 4": {
+      "commandName": "Project",
+      "commandLineArgs": "input4.txt"
     }
   }
 }
