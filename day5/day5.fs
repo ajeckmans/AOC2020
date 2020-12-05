@@ -5,15 +5,10 @@ open System.IO
 let charsToByte chars =
     chars
     |> Seq.rev
-    |> Seq.fold (fun (state, pos) c -> if c = 'B' || c = 'R' then ((1uy <<< pos) ||| state, pos + 1) else (state, pos + 1)) (0 |> byte, 0)
+    |> Seq.fold (fun (state, pos) c -> if c = 'B' || c = 'R' then ((int16 1 <<< pos) ||| state, pos + 1) else (state, pos + 1)) (int16 0, 0)
     |> fst
 
-let fileToRowColumn filePath =
-    File.ReadAllLines filePath
-    |> Array.map (fun line ->
-        let chars = line.ToCharArray()
-        (chars |> Seq.take 7 |> charsToByte, chars |> Seq.skip 7 |> charsToByte))
-    |> Array.map (fun (row, column) -> (row |> int) * 8 + (column |> int))
+let fileToRowColumn filePath = File.ReadAllLines filePath |> Array.map (fun line -> line.ToCharArray() |> charsToByte |> int)
 
 let solvePart1 filePath = fileToRowColumn filePath |> Array.sortDescending |> Array.head
 

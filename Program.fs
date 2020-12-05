@@ -12,7 +12,8 @@ let main argv =
     // let answer = day1.solve filePath (argv.[1] |> int)
     // let answer = day2.solve filePath day2.part1
     // let answer = day2.solve filePath day2.part2
-    let answer = day4.solve filePath
+    // let answer = day4.solve filePath
+    let answer = day5.solvePart2 filePath
 
     printfn "answer %A" answer
     0 // return an integer exit code
