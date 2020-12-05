@@ -3,23 +3,27 @@
   "profiles": {
     "AOC2020 - 1 - 1": {
       "commandName": "Project",
-      "commandLineArgs": "input1.txt 2"
+      "commandLineArgs": "day1/input1.txt 2"
     },
     "AOC2020 - 1 - 2": {
       "commandName": "Project",
-      "commandLineArgs": "input1.txt 3"
+      "commandLineArgs": "day1/input1.txt 3"
     },
     "AOC2020 - 2": {
       "commandName": "Project",
-      "commandLineArgs": "input2.txt"
+      "commandLineArgs": "day2/input2.txt"
     },
     "AOC2020 - 3": {
       "commandName": "Project",
-      "commandLineArgs": "input3.txt"
+      "commandLineArgs": "day3/input3.txt"
     },
     "AOC2020 - 4": {
       "commandName": "Project",
-      "commandLineArgs": "input4.txt"
+      "commandLineArgs": "day4/input4.txt"
+    },
+    "AOC2020 - 5": {
+      "commandName": "Project",
+      "commandLineArgs": "day5/input.txt"
     }
   }
 }
