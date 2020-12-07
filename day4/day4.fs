@@ -131,13 +131,13 @@ let MapToPassportData (s: string) =
             passport) PassportData.Default
 
 let solve filePath =
-    File.ReadAllLines filePath
-    |> Array.fold (fun state elem ->
+    File.ReadLines filePath
+    |> Seq.fold (fun state elem ->
         match elem, state with
         | "", _ -> "" :: state
         | s, [] -> s :: state
         | s, "" :: rest -> s :: rest
         | s, first :: rest -> first + " " + s :: rest) []
-    |> List.map MapToPassportData
-    |> List.filter (fun e -> e.IsValid)
-    |> List.length
+    |> Seq.map MapToPassportData
+    |> Seq.filter (fun e -> e.IsValid)
+    |> Seq.length

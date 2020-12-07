@@ -14,27 +14,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Properties\launchSettings.json" />
+    <Content Include="day1\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="day1\day1.fs" />
-    <Content Include="day1\input1.txt">
+    <Content Include="day2\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="day2\day2.fs" />
-    <Content Include="day2\input2.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="day3\input3.txt">
+    <Content Include="day3\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="day3\day3.fs" />
-    <Compile Include="day4\day4.fs" />
-    <Content Include="day4\input4.txt">
+    <Content Include="day4\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="day4\day4.fs" />
     <Content Include="day5\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="day5\day5.fs" />
+    <Content Include="day6\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="day6\day6.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
