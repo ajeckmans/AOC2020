@@ -77,9 +77,7 @@ let solvePart2 filepath =
 
     match parseResult with
     | Success (result, _, _) ->
-        let possibles = mutations result |> Seq.toList
-
-        possibles
+        mutations result
         |> Seq.find (fun x ->
             match executeCode x with
             | OK acc ->
