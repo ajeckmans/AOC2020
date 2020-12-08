@@ -4,8 +4,7 @@ open System.Collections.Generic
 open System.IO
 open FParsec
 
-type ExecutionContext = { nextLine: int; accumulator: int64; executedLines: int list }
-
+// Parser
 let instruction = pstring "acc" <|> pstring "jmp" <|> pstring "nop"
 
 let number = pint32
@@ -15,6 +14,10 @@ let expr = (instruction .>> spaces) .>>. number
 let code = many (expr .>> opt skipNewline)
 
 let parse s = run code s
+
+// Execution engine
+
+type ExecutionContext = { nextLine: int; accumulator: int64; executedLines: int list }
 
 let applyExpression (expr: string * int32) state =
     match expr with
@@ -46,6 +49,9 @@ let executeCode instructions =
             if state.executedLines |> List.contains state.nextLine then TERMINATED state else execute (applyExpression currentExpr state)
 
     execute { nextLine = 0; accumulator = 0L; executedLines = [] }
+
+
+// puzzles
 
 let solvePart1 filepath =
     let parseResult = File.ReadAllText filepath |> parse
