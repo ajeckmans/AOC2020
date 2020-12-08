@@ -1,9 +1,9 @@
-﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
+﻿// Learn more  F# at http://docs.microsoft.com/dotnet/fsharp
 
 open System.IO
 open AOC2020
-open BenchmarkDotNet.Attributes
-open BenchmarkDotNet.Running
+//open BenchmarkDotNet.Attributes
+//open BenchmarkDotNet.Running
 
 let filePath file = Path.Combine(Directory.GetCurrentDirectory(), file)
 //
@@ -41,6 +41,8 @@ let main argv =
         | "day6part2" -> day6.solvePart2 (filePath "day6\input.txt") :> obj
         | "day7part1" -> day7.solvePart1 (filePath "day7\input.txt") :> obj
         | "day7part2" -> day7.solvePart2 (filePath "day7\input.txt") :> obj
+        | "day8part1" -> day8.solvePart1 (filePath "day8\input.txt") :> obj
+        | "day8part2" -> day8.solvePart2 (filePath "day8\input.txt") :> obj
         | _ -> failwith "todo"
 
     printfn "answer %A" answer
