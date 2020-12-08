@@ -2,11 +2,29 @@
 
 open System.IO
 open AOC2020
+open BenchmarkDotNet.Attributes
+open BenchmarkDotNet.Running
 
+let filePath file = Path.Combine(Directory.GetCurrentDirectory(), file)
+//
+//type Benchmark () =
+//    let mutable puzzleInput : string [] = [||]
+//
+//    [<GlobalSetup>]
+//    member self.SetupData() =
+//        puzzleInput <- File.ReadAllLines (filePath "day1\input.txt")
+//
+//    [<Benchmark>]
+//    member self.``two_combinations`` () = day1.solve puzzleInput 2
+//
+//    [<Benchmark>]
+//    member self.``tree_combinations`` () = day1.solve puzzleInput 3
+//
+//let defaultSwitch () = BenchmarkSwitcher [| typeof<Benchmark>  |]
 
 [<EntryPoint>]
 let main argv =
-    let filePath file = Path.Combine(Directory.GetCurrentDirectory(), file)
+    //    defaultSwitch().Run argv |> ignore
 
     let answer: obj =
         match argv.[0] with
@@ -21,6 +39,8 @@ let main argv =
         | "day5part2" -> day5.solvePart2 (filePath "day5\input.txt") :> obj
         | "day6part1" -> day6.solvePart1 (filePath "day6\input.txt") :> obj
         | "day6part2" -> day6.solvePart2 (filePath "day6\input.txt") :> obj
+        | "day7part1" -> day7.solvePart1 (filePath "day7\input.txt") :> obj
+        | "day7part2" -> day7.solvePart2 (filePath "day7\input.txt") :> obj
         | _ -> failwith "todo"
 
     printfn "answer %A" answer
