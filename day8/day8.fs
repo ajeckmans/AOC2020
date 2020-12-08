@@ -1,6 +1,5 @@
 ﻿module AOC2020.day8
 
-open System.Collections.Generic
 open System.IO
 open FParsec
 
@@ -50,16 +49,7 @@ let executeCode instructions =
 
     execute { nextLine = 0; accumulator = 0L; executedLines = [] }
 
-
-// puzzles
-
-let solvePart1 filepath =
-    let parseResult = File.ReadAllText filepath |> parse
-
-    match parseResult with
-    | Success (result, _, _) -> printfn "%A" (executeCode result)
-    | Failure (errorMsg, _, _) -> printfn "%s" errorMsg
-
+// mutator
 let mutateInstruction instruction =
     match instruction with
     | ("jmp", num) -> ("nop", num)
@@ -73,6 +63,14 @@ let mutations instructions =
             | 0 -> yield (mutateInstruction instructions.[0]) :: instructions.[1..]
             | i -> yield instructions.[..i - 1] @ (mutateInstruction instructions.[i]) :: instructions.[i + 1..]
     }
+
+// puzzles
+let solvePart1 filepath =
+    let parseResult = File.ReadAllText filepath |> parse
+
+    match parseResult with
+    | Success (result, _, _) -> printfn "%A" (executeCode result)
+    | Failure (errorMsg, _, _) -> printfn "%s" errorMsg
 
 let solvePart2 filepath =
     let parseResult = File.ReadAllText filepath |> parse
