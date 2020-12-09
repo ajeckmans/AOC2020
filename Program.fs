@@ -22,6 +22,7 @@ let filePath file = Path.Combine(Directory.GetCurrentDirectory(), file)
 //
 //let defaultSwitch () = BenchmarkSwitcher [| typeof<Benchmark>  |]
 
+
 [<EntryPoint>]
 let main argv =
     //    defaultSwitch().Run argv |> ignore
@@ -43,6 +44,8 @@ let main argv =
         | "day7part2" -> day7.solvePart2 (filePath "day7\input.txt") :> obj
         | "day8part1" -> day8.solvePart1 (filePath "day8\input.txt") :> obj
         | "day8part2" -> day8.solvePart2 (filePath "day8\input.txt") :> obj
+        | "day9part1" -> day9.solvePart1 (filePath "day9\input.txt") :> obj
+        | "day9part2" -> day9.solvePart2 (filePath "day9\input.txt") :> obj
         | _ -> failwith "todo"
 
     printfn "answer %A" answer
