@@ -7,42 +7,42 @@ open FParsec
 // Domain
 // ################
 
-type Expression =
+type Instruction =
     | ACC of int32
     | JMP of int32
     | NOP of int32
 
-type Program = { Instructions: Expression list }
+type Program = { Instructions: Instruction list }
 
 // ################
 // Parser
 // ################
 
-let instruction = pstring "acc" <|> pstring "jmp" <|> pstring "nop"
+let operationParser = pstring "acc" <|> pstring "jmp" <|> pstring "nop"
 
-let number = pint32
+let numberParser = pint32
 
-let mapToExpression i =
+let mapToInstruction i =
     match i with
     | ("acc", num) -> ACC num
     | ("jmp", num) -> JMP num
     | ("nop", num) -> NOP num
-    | _ -> failwith "unsupported expression"
+    | _ -> failwith "unsupported instruction"
 
-let expr = ((instruction .>> spaces) .>>. number) |>> mapToExpression
+let instructionParser = ((operationParser .>> spaces) .>>. numberParser) |>> mapToInstruction
 
-let mapToProgram expressions = { Instructions = expressions }
+let mapToProgram instructions = { Instructions = instructions }
 
-let code = many (expr .>> opt skipNewline) |>> mapToProgram
+let sourceParser = many (instructionParser .>> opt skipNewline) |>> mapToProgram
 
-let parse s = run code s
+let parse source = run sourceParser source
 
 // ################
 // Execution engine
 // ################
 type ExecutionContext = { nextLine: int; accumulator: int64; executedLines: int list }
 
-let applyExpression expr state =
+let executeInstruction expr state =
     match expr with
     | ACC num ->
         { state with
@@ -62,15 +62,15 @@ type ExecutionResult =
 let executeProgram program =
     let terminationLine = program.Instructions |> List.length
 
-    let rec execute state =
+    let rec run state instructions =
         if state.nextLine = terminationLine then
             OK state.accumulator
         else
-            let currentExpr = program.Instructions.Item state.nextLine
+            let currentExpr = instructions |> List.item state.nextLine
 
-            if state.executedLines |> List.contains state.nextLine then TERMINATED state else execute (applyExpression currentExpr state)
+            if state.executedLines |> List.contains state.nextLine then TERMINATED state else run (executeInstruction currentExpr state) instructions
 
-    execute { nextLine = 0; accumulator = 0L; executedLines = [] }
+    run { nextLine = 0; accumulator = 0L; executedLines = [] } program.Instructions
 
 // ################
 // Mutator
